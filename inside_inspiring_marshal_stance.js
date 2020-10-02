@@ -1,6 +1,8 @@
 (async () => {
 	let messageContent = '';
 	if (actor) {
+		let name = token.actor.data.name;
+
 		if ((actor.data.data.customModifiers['attack'] || []).some(modifier => modifier.name === 'Inside Inspiring Marshal Stance Aura')) {
 			await actor.removeCustomModifier('attack', 'Inside Inspiring Marshal Stance Aura');
 			
@@ -8,7 +10,7 @@
 				await token.toggleEffect("systems/pf2e/icons/conditions-3/helpful.png")
 			}
 
-			messageContent = 'Is no longer Inside Inspiring Marshal Stance Aura.'
+			messageContent = name + ' is no longer Inside Inspiring Marshal Stance Aura.'
 
 		}
 		else {
@@ -18,7 +20,7 @@
 				await token.toggleEffect("systems/pf2e/icons/conditions-3/helpful.png")
 			}
 
-			messageContent = 'Is Inside Inspiring Marshal Stance Aura (+1 status bonus to attack).'
+			messageContent = name + ' is Inside Inspiring Marshal Stance Aura (+1 status bonus to attack).'
 		};
 
 		if (messageContent !== '') {

@@ -9,9 +9,9 @@ let name = token.actor.data.name;
 let highest_number_of_damage_dice = 0;
 
 let strikingValue = {
-    'striking': 1,
-    'greaterStriking': 2,
-    'majorStriking': 3
+    'striking': 2,
+    'greaterStriking': 3,
+    'majorStriking': 4
 };
 
 const weapons = actor.data.items.filter(item => item.type === 'weapon');
