@@ -24,12 +24,12 @@ This macro should be used by anyone within range of a Song of Strength.
 
 ## weapon_disarm.js
 
-This macro will roll an athletics check and automatically add in the item bonus of the equipped weapon with the highest potency rune that has the Disarm trait.
+This macro will roll an athletics check and automatically add in the item bonus of the equipped weapon with the highest potency rune that has the Disarm trait. Holding Ctrl while clicking on the macro will apply the 1st MAP. Holding alt will automatically apply the 2nd MAP.
 
 ## weapon_shove.js
 
-This macro will roll an athletics check and automatically add in the item bonus of the equipped weapon with the highest potency rune that has the Shove trait.
+This macro will roll an athletics check and automatically add in the item bonus of the equipped weapon with the highest potency rune that has the Shove trait. Holding Ctrl while clicking on the macro will apply the 1st MAP. Holding alt will automatically apply the 2nd MAP.
 
 ## weapon_trip.js
 
-This macro will roll an athletics check and automatically add in the item bonus of the equipped weapon with the highest potency rune that has the Trip trait.
+This macro will roll an athletics check and automatically add in the item bonus of the equipped weapon with the highest potency rune that has the Trip trait. Holding Ctrl while clicking on the macro will apply the 1st MAP. Holding alt will automatically apply the 2nd MAP.
