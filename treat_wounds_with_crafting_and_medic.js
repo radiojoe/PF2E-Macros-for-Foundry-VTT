@@ -4,6 +4,10 @@
  *
  * https://github.com/radiojoe/PF2E-Macros-for-Foundry-VTT
  */
+if (!actor) {
+      ui.notifications.warn("You must have an actor selected.");
+      return;
+}
 
 let toChat = (content, rollString) => {
     let chatData = {
@@ -37,7 +41,7 @@ let rollTreatWounds = (args) => {
     const roll = new Roll(`d20`).roll().total;
     const crit = handleCrits(roll)
 
-    let message = `${name} attemps to Treat Wounds (with Crafting)`;
+    let message = `${name} attemps to Treat Wounds (with Crafting and +1 from Expanded Healer's Tools)`;
     if (treat_wounds_target.length) {
         message += ` on ${treat_wounds_target}`
     }
@@ -47,11 +51,13 @@ let rollTreatWounds = (args) => {
 
     let success = 0;
 
-    if (roll + med.value >= DC+10) {
+    let check_with_healers_tools_bonus = med.value + 1;
+
+    if (roll + check_with_healers_tools_bonus >= DC+10) {
         success = 2;
-    } else if (roll + med.value >= DC) {
+    } else if (roll + check_with_healers_tools_bonus >= DC) {
         success = 1;
-    } else if (roll + med.value <= DC-10) {
+    } else if (roll + check_with_healers_tools_bonus <= DC-10) {
         // Fix for crit fail to match CRB 10 or less
         success = -1;
     }
@@ -59,13 +65,13 @@ let rollTreatWounds = (args) => {
     success += crit;
 
     if (success > 1) {
-        toChat(`${message} <strong style='color: green'>[[${roll}+${med.value}]] vs. ${DC} critically succeeded!</strong>`, `4d8+${bonus}`);
+        toChat(`${message} <strong style='color: green'>[[${roll}+${check_with_healers_tools_bonus}]] vs. ${DC} critically succeeded!</strong>`, `4d8+${bonus}`);
     } else if (success === 1) {
-        toChat(`${message} <strong style='color: green'>[[${roll}+${med.value}]] vs. ${DC} succeeded.</strong>`, `2d8+${bonus}`);
+        toChat(`${message} <strong style='color: green'>[[${roll}+${check_with_healers_tools_bonus}]] vs. ${DC} succeeded.</strong>`, `2d8+${bonus}`);
     } else if (success < 0) {
-        toChat(`${message} <strong style='color: red'>[[${roll}+${med.value}]] vs. ${DC} critically failed!</strong> The target takes the following damage.`, '1d8');
+        toChat(`${message} <strong style='color: red'>[[${roll}+${check_with_healers_tools_bonus}]] vs. ${DC} critically failed!</strong> The target takes the following damage.`, '1d8');
     } else if (success === 0) {
-        toChat(`${message} <strong style='color: red'>[[${roll}+${med.value}]] vs. ${DC} failed.</strong>`);
+        toChat(`${message} <strong style='color: red'>[[${roll}+${check_with_healers_tools_bonus}]] vs. ${DC} failed.</strong>`);
     }
 }
 
